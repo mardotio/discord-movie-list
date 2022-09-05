@@ -25,7 +25,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.tsx?$/,
+        test: /\.ts$/,
         use: [
           {
             loader: 'ts-loader',
@@ -37,7 +37,7 @@ module.exports = {
       },
     ],
   },
-  mode: 'development',
+  mode: isProd ? 'production' : 'development',
   resolve: {
     extensions: ['.ts', '.js'],
     plugins: [new TsConfigPathsPlugin({ configFile: tsConfig })],
