@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_PORT
+      - POSTGRES_HOST
+  backend:
+    build:
+      context: ../services/backend
+      dockerfile: dev/Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ../services/backend/src:/app/src
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_PORT
+      - POSTGRES_HOST
+      - SERVER_PORT
+      - DISCORD_JWT_SECRET
+      - JWT_SECRET
+      - DISCORD_BOT_JWT_SECRET
+  ui:
+    build:
+      context: ../services/ui
+      dockerfile: dev/Dockerfile
+    depends_on:
+      - backend
+    volumes:
+      - ../services/ui/discord-movie-list/src:/app/src
+      - ../services/ui/discord-movie-list/public:/app/public
+  proxy:
+    image: nginx
+    depends_on:
+      - backend
+      - ui
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 3000:3000

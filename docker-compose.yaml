@@ -1,0 +1,45 @@
+version: '2'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_PORT
+      - POSTGRES_HOST
+      - POSTGRES_DATA_PATH
+    volumes:
+      - $POSTGRES_DATA_PATH:/var/lib/postgresql/data
+  backend:
+    build:
+      context: services/backend
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_PORT
+      - POSTGRES_HOST
+      - SERVER_PORT
+      - DISCORD_JWT_SECRET
+      - DISCORD_BOT_JWT_SECRET
+      - JWT_SECRET
+      - UI_ENDPOINT
+      - ENVIRONMENT_MODE=production
+  proxy:
+    build:
+      context: services/ui
+    depends_on:
+      - backend
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    ports:
+      - 443:443
+      - 80:80
+    environment:
+      - NGINX_CERT
+      - NGINX_CERT_KEY
+    command: /bin/sh -c "envsubst '$NGINX_CERT;$NGINX_CERT_KEY' < /etc/nginx/nginx.template > /etc/nginx/nginx.conf && nginx -g daemon off;"
