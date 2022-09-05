@@ -1,0 +1,52 @@
+{
+  "globals": {
+    "document": false
+  },
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb", "prettier"],
+  "ignorePatterns": ["build/*", "node_modules/*"],
+  "plugins": ["prettier", "@typescript-eslint/eslint-plugin"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "prettier/prettier": "error",
+    "import/extensions": ["error", "never", { "svg": "always" }],
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.tsx",
+          "**/*.spec.tsx",
+          "**/*.test.ts",
+          "**/*.spec.ts",
+          "**/setupTests.ts",
+          "webpack/*"
+        ]
+      }
+    ],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "ignoreRestSiblings": true }
+    ],
+    "react/prop-types": 0,
+    "react/require-default-props": 0,
+    "react/jsx-props-no-spreading": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "typescript": {
+        "project": ["tsconfig.json"]
+      }
+    }
+  }
+}

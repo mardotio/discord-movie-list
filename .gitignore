@@ -1,3 +1,15 @@
+# Project specific files
+services/backend/build
+
+# IDE files
+.idea/
+
+# OS files
+.DS_Store
+
+# Testing
+/coverage
+
 # Logs
 logs
 *.log
