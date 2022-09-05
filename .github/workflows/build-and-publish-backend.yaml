@@ -2,6 +2,8 @@ name: Build and publish backend
 
 on:
   push:
+    branches:
+      - master
     paths:
       - 'services/backend/**'
       - '!services/backend/dev/**'
