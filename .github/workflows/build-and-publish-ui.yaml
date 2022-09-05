@@ -1,12 +1,13 @@
-name: Build and publish backend
+name: Build and publish UI
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'services/backend/**'
-      - '!services/backend/dev/**'
+      - 'services/ui/**'
+      - '!services/ui/dev/**'
+      - '!services/ui/discord-movie-list/README.md'
 
 jobs:
   push_to_registry:
@@ -26,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: mardotio/discord-movie-list-backend
+          images: mardotio/discord-movie-list-ui
           tags: |
             type=sha
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
@@ -35,7 +36,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: services/backend
+          context: services/ui
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
