@@ -1,7 +1,3 @@
-import * as dotenv from 'dotenv';
-
-dotenv.config();
-
 type OptionalEnvironment<K extends string> = Record<K, string | undefined>;
 type RequiredEnvironment<K extends string> = Record<K, string>;
 
