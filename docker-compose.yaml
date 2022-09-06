@@ -29,11 +29,24 @@ services:
       - JWT_SECRET
       - UI_ENDPOINT
       - ENVIRONMENT_MODE=production
+  bot:
+    build:
+      context: services/bot
+    depends_on:
+      - backend
+    environment:
+      - DISCORD_BOT_TOKEN
+      - DISCORD_JWT_SECRET
+      - DISCORD_BOT_JWT_SECRET
+      - DISCORD_BOT_ID
+      - UI_ENDPOINT
+      - ENVIRONMENT_MODE=production
   proxy:
     build:
       context: services/ui
     depends_on:
       - backend
+      - bot
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
     ports:

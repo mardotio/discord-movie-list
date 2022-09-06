@@ -1,5 +1,6 @@
 # Project specific files
 services/backend/build
+services/bot/build
 
 # IDE files
 .idea/

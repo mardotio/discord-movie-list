@@ -1,0 +1,45 @@
+{
+  "name": "discord-movie-list-bot",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=16.9.0"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.ts",
+    "run": "wait-on build/discord.js && nodemon build/discord.js",
+    "start": "concurrently \"npm run build\" \"npm run run\"",
+    "build:prod": "NODE_ENV=production webpack --config webpack.config.ts",
+    "start:prod": "node build/discord.js",
+    "lint": "eslint --ext .jsx --ext .js --ext .tsx --ext .ts src",
+    "format": "./node_modules/prettier/bin-prettier.js --loglevel silent --write ."
+  },
+  "dependencies": {
+    "date-fns": "^2.21.3",
+    "discord-api-types": "^0.37.7",
+    "discord.js": "^14.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.1",
+    "@types/node": "^12.19.7",
+    "@types/node-fetch": "^2.5.8",
+    "concurrently": "^5.3.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "ts-loader": "^9.3.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.8.2",
+    "wait-on": "^5.2.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
