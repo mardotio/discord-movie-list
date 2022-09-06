@@ -36,11 +36,26 @@ services:
     volumes:
       - ../services/ui/discord-movie-list/src:/app/src
       - ../services/ui/discord-movie-list/public:/app/public
+  bot:
+    build:
+      context: ../services/bot
+      dockerfile: dev/Dockerfile
+    depends_on:
+      - backend
+    volumes:
+      - ../services/bot/src:/app/src
+    environment:
+      - DISCORD_BOT_TOKEN
+      - DISCORD_JWT_SECRET
+      - DISCORD_BOT_JWT_SECRET
+      - DISCORD_BOT_ID
+      - UI_ENDPOINT
   proxy:
     image: nginx
     depends_on:
       - backend
       - ui
+      - bot
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
