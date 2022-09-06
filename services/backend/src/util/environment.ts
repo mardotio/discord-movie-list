@@ -1,4 +1,4 @@
-import generateEnvironment from '@shared/generateEnvironment';
+import generateEnvironment from '@mardotio/generate-environment';
 
 type EnvironmentVariables =
   | 'POSTGRES_DB'

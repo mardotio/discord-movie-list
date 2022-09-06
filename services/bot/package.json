@@ -15,6 +15,7 @@
     "format": "./node_modules/prettier/bin-prettier.js --loglevel silent --write ."
   },
   "dependencies": {
+    "@mardotio/generate-environment": "^0.2.0",
     "date-fns": "^2.21.3",
     "discord-api-types": "^0.37.7",
     "discord.js": "^14.3.0",
