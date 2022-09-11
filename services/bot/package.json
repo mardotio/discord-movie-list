@@ -12,7 +12,8 @@
     "build:prod": "NODE_ENV=production webpack --config webpack.config.ts",
     "start:prod": "node build/discord.js",
     "lint": "eslint --ext .jsx --ext .js --ext .tsx --ext .ts src",
-    "format": "./node_modules/prettier/bin-prettier.js --loglevel silent --write ."
+    "format": "./node_modules/prettier/bin-prettier.js --loglevel silent --write .",
+    "preinstall": "cd ../../packages/api-types && npm run generate"
   },
   "dependencies": {
     "@mardotio/generate-environment": "^0.2.0",
@@ -23,6 +24,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "@mardoio/api-types": "file:../../packages/api-types",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^12.19.7",
     "@types/node-fetch": "^2.5.8",

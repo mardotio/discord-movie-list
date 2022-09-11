@@ -1,5 +1,5 @@
-import { ShortUserResponse } from '../user';
-import { ReactionResponse } from '../reaction';
+import { ShortUserResponse } from './user';
+import { ReactionResponse } from './reaction';
 
 export interface CreateMovieRequest {
   name: string;

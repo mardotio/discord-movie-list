@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { param, validationResult } from 'express-validator';
 import { getRepository } from 'typeorm';
 import MovieStatus from '@entities/MovieStatus';
-import { StatusResponse } from '@shared/status';
+import { StatusResponse } from '../apiTypes';
 
 const toStatusResponse = (status: MovieStatus): StatusResponse => ({
   order: status.order,

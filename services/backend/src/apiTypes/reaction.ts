@@ -1,4 +1,4 @@
-import { ShortUserResponse } from '../user';
+import { ShortUserResponse } from './user';
 
 export interface UpdateMovieReactionRequest {
   reaction: string;

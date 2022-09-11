@@ -1,6 +1,8 @@
 # Project specific files
 services/backend/build
 services/bot/build
+packages/api-types/src
+packages/api-types/lib
 
 # IDE files
 .idea/

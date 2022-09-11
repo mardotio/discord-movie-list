@@ -1,10 +1,10 @@
 import { RequestHandler } from 'express';
 import jwt from 'jsonwebtoken';
 import environment from '@util/environment';
-import { DiscordJwtPayload, JwtPayload } from '@shared/token';
 import { getRepository } from 'typeorm';
 import User from '@entities/User';
 import { generateJwtPayload } from '@util/jwt';
+import { DiscordJwtPayload, JwtPayload } from '../apiTypes';
 
 interface AppCookies {
   token?: string;

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import User from '@entities/User';
-import { UserResponse } from '@shared/user';
 import { getAvatarUrl } from '@util/discord';
+import { UserResponse } from '../apiTypes';
 
 const toUserResponse = (user: User): UserResponse => ({
   id: user.id,

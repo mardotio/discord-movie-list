@@ -18,6 +18,9 @@ jobs:
   test-and-lint:
     name: Test and lint
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/ui/discord-movie-list
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3

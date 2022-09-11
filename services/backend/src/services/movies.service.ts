@@ -3,17 +3,18 @@ import { getRepository } from 'typeorm';
 import { body, param, query, validationResult } from 'express-validator';
 import Movie from '@entities/Movie';
 import User from '@entities/User';
+import MovieStatus from '@entities/MovieStatus';
+import Reaction from '@entities/Reaction';
+import { getAvatarUrl } from '@util/discord';
 import {
   CreateMovieRequest,
   MovieResponse,
   MovieStatusCreateRequest,
-  UpdateMovieRequest,
-} from '@shared/movie';
-import MovieStatus from '@entities/MovieStatus';
-import { ReactionResponse, UpdateMovieReactionRequest } from '@shared/reaction';
-import Reaction from '@entities/Reaction';
-import { getAvatarUrl } from '@util/discord';
-import { PaginatedResponse } from '@shared/utility';
+  PaginatedResponse,
+  ReactionResponse,
+  UpdateMovieReactionRequest,
+  UpdateMovieRequest
+} from '../apiTypes';
 
 const APPROVAL_COUNT = 2;
 

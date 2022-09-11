@@ -31,7 +31,8 @@ services:
       - ENVIRONMENT_MODE=production
   bot:
     build:
-      context: services/bot
+      context: .
+      dockerfile: services/bot/Dockerfile
     depends_on:
       - backend
     environment:
@@ -43,7 +44,8 @@ services:
       - ENVIRONMENT_MODE=production
   proxy:
     build:
-      context: services/ui
+      context: .
+      dockerfile: services/ui/Dockerfile
     depends_on:
       - backend
       - bot

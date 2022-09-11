@@ -1,8 +1,9 @@
 import { CommandInteraction, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { formatDistanceToNow, toDate } from 'date-fns';
-import { ApiConfig, BotApi, isErrorResponse, MovieResponse } from '../utils/api';
+import { ApiConfig, BotApi, isErrorResponse } from '../utils/api';
 import { generateBotJwt } from '../utils/jwt';
 import getCommandName from '../utils/getCommandName';
+import { MovieResponse } from '@mardoio/api-types';
 
 const command = new SlashCommandBuilder()
   .setName(getCommandName('movie-bot-pick'))
