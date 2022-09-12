@@ -1,5 +1,5 @@
-import { StatusResponse } from '../status';
 import { ApiFetch } from './ApiFetch';
+import { StatusResponse } from '../../apiTypes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const StatusesApi = {

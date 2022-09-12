@@ -1,6 +1,6 @@
-import { JwtPayload, TokenResponse } from '@shared/token';
 import jwt from 'jsonwebtoken';
 import APP_ENVIRONMENT from '@util/environment';
+import { JwtPayload, TokenResponse } from '../apiTypes';
 
 const SECONDS_IN_MINUTE = 60;
 const EXPIRATION_IN_SECONDS = SECONDS_IN_MINUTE * 10;

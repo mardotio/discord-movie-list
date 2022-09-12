@@ -29,21 +29,21 @@ services:
       - DISCORD_BOT_JWT_SECRET
   ui:
     build:
-      context: ../services/ui
-      dockerfile: dev/Dockerfile
+      context: ../
+      dockerfile: services/ui/dev/Dockerfile
     depends_on:
       - backend
     volumes:
-      - ../services/ui/discord-movie-list/src:/app/src
-      - ../services/ui/discord-movie-list/public:/app/public
+      - ../services/ui/discord-movie-list/src:/app/services/ui/discord-movie-list/src
+      - ../services/ui/discord-movie-list/public:/app/services/ui/discord-movie-list/public
   bot:
     build:
-      context: ../services/bot
-      dockerfile: dev/Dockerfile
+      context: ../
+      dockerfile: services/bot/dev/Dockerfile
     depends_on:
       - backend
     volumes:
-      - ../services/bot/src:/app/src
+      - ../services/bot/src:/app/services/bot/src
     environment:
       - DISCORD_BOT_TOKEN
       - DISCORD_JWT_SECRET

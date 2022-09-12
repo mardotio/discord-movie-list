@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'services/ui/**'
+      - 'services/backend/src/apiTypes'
       - '!services/ui/dev/**'
       - '!services/ui/discord-movie-list/README.md'
 

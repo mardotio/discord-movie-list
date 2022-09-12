@@ -1,5 +1,5 @@
 import { ApiFetch } from './ApiFetch';
-import { MovieResponse } from '../movie';
+import { MovieResponse } from '../../apiTypes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const BotApi = {

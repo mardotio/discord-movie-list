@@ -1,11 +1,11 @@
+import { ApiFetch } from './ApiFetch';
 import {
   CreateMovieRequest,
   MovieResponse,
-  UpdateMovieRequest,
-} from '../movie';
-import { UpdateMovieReactionRequest } from '../reaction';
-import { PaginatedResponse } from '../utility';
-import { ApiFetch } from './ApiFetch';
+  PaginatedResponse,
+  UpdateMovieReactionRequest,
+  UpdateMovieRequest
+} from '../../apiTypes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const MoviesApi = {
