@@ -7,6 +7,12 @@ on:
     paths:
       - 'services/backend/**'
       - '!services/backend/dev/**'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'services/backend/**'
+      - '!services/backend/dev/**'
 
 jobs:
   push_to_registry:
@@ -18,6 +24,7 @@ jobs:
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
+        if: ${{ contains(fromJson('["push"]'), github.event_name) }}
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -36,6 +43,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: services/backend
-          push: true
+          push: ${{ contains(fromJson('["push"]'), github.event_name) }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

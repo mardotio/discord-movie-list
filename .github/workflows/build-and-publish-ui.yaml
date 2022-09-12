@@ -9,6 +9,14 @@ on:
       - 'services/backend/src/apiTypes'
       - '!services/ui/dev/**'
       - '!services/ui/discord-movie-list/README.md'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'services/ui/**'
+      - 'services/backend/src/apiTypes'
+      - '!services/ui/dev/**'
+      - '!services/ui/discord-movie-list/README.md'
 
 jobs:
   push_to_registry:
@@ -20,6 +28,7 @@ jobs:
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
+        if: ${{ contains(fromJson('["push"]'), github.event_name) }}
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
@@ -39,6 +48,6 @@ jobs:
         with:
           context: .
           file: services/ui/Dockerfile
-          push: true
+          push: ${{ contains(fromJson('["push"]'), github.event_name) }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
