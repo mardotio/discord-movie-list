@@ -1,42 +1,31 @@
 import generateEnvironment from '@mardotio/generate-environment';
 
-type EnvironmentVariables =
-  | 'POSTGRES_DB'
-  | 'POSTGRES_USER'
-  | 'POSTGRES_PASSWORD'
-  | 'POSTGRES_PORT'
-  | 'POSTGRES_HOST'
-  | 'SERVER_PORT'
-  | 'APP_HOST'
-  | 'DISCORD_HOOK'
-  | 'JWT_SECRET'
-  | 'DISCORD_BOT_JWT_SECRET'
-  | 'DISCORD_JWT_SECRET';
+const validateEnv = () => {
+  const result = generateEnvironment({
+    required: [
+      'POSTGRES_DB',
+      'POSTGRES_USER',
+      'POSTGRES_PASSWORD',
+      'POSTGRES_PORT',
+      'POSTGRES_HOST',
+      'SERVER_PORT',
+      'DISCORD_JWT_SECRET',
+      'JWT_SECRET',
+      'DISCORD_BOT_JWT_SECRET',
+      // 'APP_HOST',
+      // 'DISCORD_HOOK',
+    ] as const,
+    optional: ['ENVIRONMENT_MODE'] as const,
+  });
 
-type OptionalEnvironmentVariables = 'ENVIRONMENT_MODE';
+  if (result.errors !== null) {
+     throw new Error(`The following environment variables were not set:\n${result.errors.join('\n')}`);
+  }
 
-const ENVIRONMENT_VARIABLES: EnvironmentVariables[] = [
-  'POSTGRES_DB',
-  'POSTGRES_USER',
-  'POSTGRES_PASSWORD',
-  'POSTGRES_PORT',
-  'POSTGRES_HOST',
-  'SERVER_PORT',
-  'DISCORD_JWT_SECRET',
-  'JWT_SECRET',
-  'DISCORD_BOT_JWT_SECRET',
-  // 'APP_HOST',
-  // 'DISCORD_HOOK',
-];
+  return result.environment;
+};
 
-const OPTIONAL_ENVIRONMENT_VARIABLES: OptionalEnvironmentVariables[] = [
-  'ENVIRONMENT_MODE',
-];
-
-const APP_ENVIRONMENT = generateEnvironment(
-  ENVIRONMENT_VARIABLES,
-  OPTIONAL_ENVIRONMENT_VARIABLES,
-);
+const APP_ENVIRONMENT = validateEnv();
 
 export const isProduction =
   !APP_ENVIRONMENT.ENVIRONMENT_MODE ||
