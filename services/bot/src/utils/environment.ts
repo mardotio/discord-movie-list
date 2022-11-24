@@ -1,28 +1,25 @@
 import generateEnvironment from '@mardotio/generate-environment';
 
-type BotRequiredEnvVars =
-  | 'DISCORD_BOT_TOKEN'
-  | 'DISCORD_JWT_SECRET'
-  | 'DISCORD_BOT_JWT_SECRET'
-  | 'UI_ENDPOINT'
-  | 'DISCORD_BOT_ID';
+const validateEnv = () => {
+  const result = generateEnvironment({
+    required: [
+      'DISCORD_BOT_TOKEN',
+      'DISCORD_JWT_SECRET',
+      'DISCORD_BOT_JWT_SECRET',
+      'UI_ENDPOINT',
+      'DISCORD_BOT_ID',
+    ] as const,
+    optional: ['ENVIRONMENT_MODE'] as const,
+  });
 
-type BotOptionalEnvVars = 'ENVIRONMENT_MODE';
+  if (result.errors !== null) {
+     throw new Error(`The following environment variables were not set:\n${result.errors.join('\n')}`);
+  }
 
-const BOT_REQUIRED_ENV_VARS: BotRequiredEnvVars[] = [
-  'DISCORD_BOT_TOKEN',
-  'DISCORD_JWT_SECRET',
-  'DISCORD_BOT_JWT_SECRET',
-  'UI_ENDPOINT',
-  'DISCORD_BOT_ID',
-];
+  return result.environment;
+};
 
-const BOT_OPTIONAL_ENV_VARS: BotOptionalEnvVars[] = ['ENVIRONMENT_MODE'];
-
-export const BOT_ENVIRONMENT = generateEnvironment(
-  BOT_REQUIRED_ENV_VARS,
-  BOT_OPTIONAL_ENV_VARS,
-);
+export const BOT_ENVIRONMENT = validateEnv();
 
 export const isProduction =
   !BOT_ENVIRONMENT.ENVIRONMENT_MODE ||
