@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { BOT_ENVIRONMENT } from './environment';
-import { DiscordJwtPayload } from '@mardoio/api-types';
+import { DiscordJwtPayload } from '@mardotio/api-types';
 
 const SECONDS_IN_MINUTE = 60;
 const EXPIRATION_IN_SECONDS = SECONDS_IN_MINUTE * 2;

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import type { Component } from 'solid-js';
+import { styled } from 'solid-styled-components';
 import Logo from './components/Logo';
 
 const Header = styled.header`
@@ -10,7 +10,7 @@ const Header = styled.header`
   background-color: #282c34;
 `;
 
-const App = () => (
+const App: Component = () => (
   <div>
     <Header>
       <Logo size="large" animate />

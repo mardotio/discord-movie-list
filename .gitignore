@@ -1,6 +1,7 @@
 # Project specific files
 services/backend/build
 services/bot/build
+services/ui/discord-movie-list/dist
 packages/api-types/src
 packages/api-types/lib
 

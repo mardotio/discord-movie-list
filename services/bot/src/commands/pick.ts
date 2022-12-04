@@ -3,7 +3,7 @@ import { formatDistanceToNow, toDate } from 'date-fns';
 import { ApiConfig, BotApi, isErrorResponse } from '../utils/api';
 import { generateBotJwt } from '../utils/jwt';
 import getCommandName from '../utils/getCommandName';
-import { MovieResponse } from '@mardoio/api-types';
+import { MovieResponse } from '@mardotio/api-types';
 
 const command = new SlashCommandBuilder()
   .setName(getCommandName('movie-bot-pick'))
