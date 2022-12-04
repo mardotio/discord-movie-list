@@ -26,7 +26,7 @@
     "vite-plugin-solid": "^2.3.0"
   },
   "dependencies": {
-    "@mardoio/api-types": "file:../../../packages/api-types",
+    "@mardotio/api-types": "file:../../../packages/api-types",
     "solid-js": "^1.5.1",
     "solid-styled-components": "^0.28.5"
   }

@@ -1,5 +1,5 @@
 import { ApiFetch } from './ApiFetch';
-import { MovieResponse } from '@mardoio/api-types';
+import { MovieResponse } from '@mardotio/api-types';
 
 // eslint-disable-next-line import/prefer-default-export
 export const BotApi = {

@@ -24,7 +24,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@mardoio/api-types": "file:../../packages/api-types",
+    "@mardotio/api-types": "file:../../packages/api-types",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^12.19.7",
     "@types/node-fetch": "^2.5.8",
