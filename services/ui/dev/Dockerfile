@@ -13,10 +13,13 @@ COPY services/ui/discord-movie-list/package.json .
 COPY services/ui/discord-movie-list/package-lock.json .
 ENV PACKAGE_SOURCE=./src
 RUN npm ci
-COPY services/ui/discord-movie-list/src src
-COPY services/ui/discord-movie-list/public public
-COPY services/ui/discord-movie-list/tsconfig.json .
+
 COPY services/ui/discord-movie-list/.eslintrc .
 COPY services/ui/discord-movie-list/.prettierignore .
 COPY services/ui/discord-movie-list/.prettierrc .
+COPY services/ui/discord-movie-list/vite.config.ts .
+COPY services/ui/discord-movie-list/tsconfig.json .
+COPY services/ui/discord-movie-list/index.html .
+COPY services/ui/discord-movie-list/src src
+
 CMD ["npm", "start"]
