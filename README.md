@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./services/ui/discord-movie-list/public/logo192.png" alt="Discord Movie List Logo">
+  <img src="./services/ui/discord-movie-list/src/assets/logo192.png" alt="Discord Movie List Logo">
 </p>
 
 # Discord Movie List
