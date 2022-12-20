@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@mardotio/api-types": "file:../../../packages/api-types",
+    "@solidjs/router": "^0.5.1",
     "solid-js": "^1.5.1",
     "solid-styled-components": "^0.28.5"
   }

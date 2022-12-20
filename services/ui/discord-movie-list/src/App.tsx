@@ -1,21 +1,22 @@
-import type { Component } from 'solid-js';
-import { styled } from 'solid-styled-components';
-import Logo from './components/Logo';
-
-const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #282c34;
-`;
+import { Navigate, Route, Routes } from '@solidjs/router';
+import { Component } from 'solid-js';
+import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login';
+import Movies from './pages/Movies';
+import routes from './routes';
 
 const App: Component = () => (
-  <div>
-    <Header>
-      <Logo size="large" animate />
-    </Header>
-  </div>
+  <Layout>
+    <Routes>
+      <Route path={routes.login} component={Login} />
+
+      <Route path="/" component={ProtectedRoute}>
+        <Route path="/" element={<Navigate href={routes.login} />} />
+        <Route path={routes.movies} component={Movies} />
+      </Route>
+    </Routes>
+  </Layout>
 );
 
 export default App;

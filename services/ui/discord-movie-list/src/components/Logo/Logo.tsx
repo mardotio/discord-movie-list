@@ -1,4 +1,5 @@
-import { Component, mergeProps } from 'solid-js';
+import type { Component } from 'solid-js';
+import { mergeProps } from 'solid-js';
 import { css, keyframes } from 'solid-styled-components';
 
 type LogoSizes = 'tiny' | 'small' | 'medium' | 'large';
