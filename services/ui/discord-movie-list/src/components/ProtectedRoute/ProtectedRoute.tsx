@@ -1,4 +1,4 @@
-import { createEffect, createSignal, Match, Switch } from 'solid-js';
+import { createEffect, Match, Switch } from 'solid-js';
 import { Outlet } from '@solidjs/router';
 import { styled } from 'solid-styled-components';
 import { useStore } from 'store';
@@ -16,7 +16,6 @@ const NotAuthorized = styled.div`
 
 const ProtectedRoute = () => {
   const [state, { getUser }] = useStore();
-  const [isLoggedIn, setIsLoggedIn] = createSignal(false);
 
   createEffect(() => {
     if (!state.user.latest) {
@@ -24,15 +23,9 @@ const ProtectedRoute = () => {
     }
   });
 
-  createEffect(() => {
-    if (state.user()) {
-      setIsLoggedIn(true);
-    }
-  });
-
   return (
     <Switch>
-      <Match when={isLoggedIn()}>
+      <Match when={!state.user.error && state.user()}>
         <Outlet />
       </Match>
       <Match when={state.user.error}>
