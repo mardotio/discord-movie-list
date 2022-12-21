@@ -1,11 +1,19 @@
-import { Component, createContext, JSX, useContext } from 'solid-js';
+import {
+  children,
+  Component,
+  Context,
+  createContext,
+  JSX,
+  useContext,
+} from 'solid-js';
 import { createStore } from 'solid-js/store';
 import { ApiConfig } from 'client';
 import createToken from './createToken';
 import createUser from './createUser';
 
-const createProvider = () => {
-  ApiConfig.baseEndpoint = '/api';
+ApiConfig.baseEndpoint = '/api';
+
+const createAppStore = () => {
   const [token, tokenActions] = createToken();
   const [user, userActions] = createUser();
   const [state] = createStore({
@@ -16,19 +24,19 @@ const createProvider = () => {
       return user;
     },
   });
-  const store = [state, { ...tokenActions, ...userActions }] as const;
-  const StoreContext = createContext(store);
-
-  const StoreProvider: Component<{ children: JSX.Element }> = (props) => (
-    <StoreContext.Provider value={store}>
-      {props.children}
-    </StoreContext.Provider>
-  );
-
-  return {
-    StoreProvider,
-    useStore: () => useContext(StoreContext),
-  };
+  return [state, { ...tokenActions, ...userActions }] as const;
 };
 
-export const { StoreProvider, useStore } = createProvider();
+const StoreContext = createContext();
+
+export const StoreProvider: Component<{ children: JSX.Element }> = (props) => {
+  const store = createAppStore();
+
+  StoreContext.defaultValue = store;
+
+  const c = children(() => props.children);
+  return <StoreContext.Provider value={store}>{c()}</StoreContext.Provider>;
+};
+
+export const useStore = () =>
+  useContext(StoreContext as Context<ReturnType<typeof createAppStore>>);
