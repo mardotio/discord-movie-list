@@ -1,5 +1,5 @@
 import { createResource, createSignal } from 'solid-js';
-import { ApiConfig, TokenApi } from '../client';
+import { ApiConfig, TokenApi } from 'client';
 
 export const createToken = () => {
   const [loginToken, setLoginToken] = createSignal<string>();

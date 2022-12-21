@@ -1,5 +1,5 @@
 import { createResource, createSignal } from 'solid-js';
-import { UsersApi } from '../client';
+import { UsersApi } from 'client';
 
 const createUser = () => {
   const [loggedIn, setLoggedIn] = createSignal(false);

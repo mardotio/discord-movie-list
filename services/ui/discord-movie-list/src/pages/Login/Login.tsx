@@ -1,9 +1,9 @@
 import { useNavigate, useSearchParams } from '@solidjs/router';
 import { createEffect } from 'solid-js';
 import { styled } from 'solid-styled-components';
-import Logo from '../../components/Logo';
-import routes from '../../routes';
-import { useStore } from '../../store';
+import Logo from 'components/Logo';
+import routes from 'routes';
+import { useStore } from 'store';
 
 const Header = styled.header`
   display: flex;

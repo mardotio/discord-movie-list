@@ -1,6 +1,6 @@
 import { Component, createContext, JSX, useContext } from 'solid-js';
 import { createStore } from 'solid-js/store';
-import { ApiConfig } from '../client';
+import { ApiConfig } from 'client';
 import createToken from './createToken';
 import createUser from './createUser';
 

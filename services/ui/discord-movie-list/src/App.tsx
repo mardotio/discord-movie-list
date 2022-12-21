@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from '@solidjs/router';
 import { Component } from 'solid-js';
-import Layout from './components/Layout';
-import ProtectedRoute from './components/ProtectedRoute';
-import Login from './pages/Login';
-import Movies from './pages/Movies';
-import routes from './routes';
+import Login from 'pages/Login';
+import Layout from 'components/Layout';
+import ProtectedRoute from 'components/ProtectedRoute';
+import Movies from 'pages/Movies';
+import routes from 'routes';
 
 const App: Component = () => (
   <Layout>

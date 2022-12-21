@@ -1,8 +1,8 @@
 import { createEffect, createSignal, Match, Switch } from 'solid-js';
 import { Outlet } from '@solidjs/router';
 import { styled } from 'solid-styled-components';
-import { useStore } from '../../store';
-import Logo from '../Logo';
+import { useStore } from 'store';
+import Logo from 'components/Logo';
 
 const NotAuthorized = styled.div`
   display: flex;
