@@ -48,9 +48,11 @@ const handler = async (interaction: CommandInteraction) => {
   const jwt = generateBotJwt({
     username: targetMember.user.username,
     id: targetMember.user.id,
-    discriminator: targetMember.user.discriminator,
     nickname: targetMember.nickname,
     avatarId: targetMember.user.avatar,
+    serverIconId: guild.icon,
+    serverId: guild.id,
+    serverName: guild.name
   });
 
   ApiConfig.headers = {

@@ -4,6 +4,7 @@ services/bot/build
 services/ui/discord-movie-list/dist
 packages/api-types/src
 packages/api-types/lib
+packages/api-types/index.ts
 
 # IDE files
 .idea/

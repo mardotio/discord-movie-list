@@ -12,15 +12,12 @@ const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: [
-    !isProd && 'webpack/hot/poll?100',
     path.join(root, 'src', 'index.ts'),
   ].filter(Boolean),
   watch: !isProd,
   target: 'node',
   externals: [
-    nodeExternals({
-      allowlist: isProd ? undefined : ['webpack/hot/poll?100'],
-    }),
+    nodeExternals(),
   ],
   module: {
     rules: [
@@ -42,9 +39,6 @@ module.exports = {
     extensions: ['.ts', '.js'],
     plugins: [new TsConfigPathsPlugin({ configFile: tsConfig })],
   },
-  plugins: [!isProd && new webpack.HotModuleReplacementPlugin()].filter(
-    Boolean,
-  ),
   output: {
     path: path.join(root, 'build'),
     filename: 'server.js',

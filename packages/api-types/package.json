@@ -3,9 +3,15 @@
   "version": "0.1.0",
   "description": "API types for movie list backend",
   "license": "MIT",
-  "main": "",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "generate": "bash ./generate.sh"
+    "generate": "npm i && node generate.js && tsc"
+  },
+  "dependencies": {
+    "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
   }
 }

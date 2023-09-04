@@ -1,13 +1,14 @@
-export interface UserResponse {
-  id: string;
-  username: string;
-  usernameId: string;
-  nickname: string | null;
-  avatarLink: string | null;
-}
+import { z } from 'zod';
 
-export interface ShortUserResponse {
-  id: string;
-  displayName: string;
-  avatarLink: string | null;
-}
+export const getCurrentUserResponse = z.object({
+  id: z.string(),
+  username: z.string(),
+  avatarLink: z.string().url().nullable(),
+  servers: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    iconLink: z.string().url().nullable(),
+    userDisplayName: z.string(),
+  })),
+});
+export type GetCurrentUserResponse = z.infer<typeof getCurrentUserResponse>;

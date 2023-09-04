@@ -1,6 +1,6 @@
 declare namespace Express {
   export interface Request {
-    jwtPayload: import('./shared/token').JwtPayload;
-    botJwtPayload: import('./shared/token').DiscordJwtPayload;
+    jwtPayload: import('./apiTypes/token').UIJWTPayload;
+    botJwtPayload: import('./apiTypes/token').DiscordJWTPayload;
   }
 }

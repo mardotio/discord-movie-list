@@ -3,6 +3,7 @@ WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
 RUN npm ci
+COPY prisma prisma
 COPY src src
 COPY webpack.config.ts .
 COPY tsconfig.json .

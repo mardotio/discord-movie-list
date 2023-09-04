@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Server {
+  id        String        @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name      String        @db.VarChar
+  foreignId String        @unique @map("foreign_id") @db.VarChar
+  iconId    String?       @map("icon_id") @db.VarChar
+  users     ServerUsers[]
+  movies    Movie[]
+  statuses  MovieStatus[]
+  tags      Tag[]
+
+  @@map("servers")
+}
+
+model User {
+  id        String        @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  foreignId String        @unique @map("foreign_id") @db.VarChar
+  username  String        @db.VarChar
+  avatarId  String?       @map("avatar_id") @db.VarChar
+  movies    Movie[]
+  reactions Reaction[]
+  servers   ServerUsers[]
+
+  @@map("users")
+}
+
+model ServerUsers {
+  userId       String  @map("user_id") @db.Uuid
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  serverId     String  @map("server_id") @db.Uuid
+  server       Server  @relation(fields: [serverId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  userNickname String? @map("user_nickname") @db.VarChar
+
+  @@unique([userId, serverId])
+  @@map("server_users")
+}
+
+model Tag {
+  id       String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name     String      @db.VarChar
+  serverId String      @map("server_id") @db.Uuid
+  server   Server      @relation(fields: [serverId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  movies   MovieTags[]
+
+  @@map("categories")
+}
+
+model Movie {
+  id          String      @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name        String      @db.VarChar
+  addedOn     DateTime    @default(now()) @map("added_on") @db.Timestamp(6)
+  watchedOn   DateTime?   @map("watched_on") @db.Timestamp(6)
+  userId      String      @map("user_id") @db.Uuid
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  serverId    String      @map("server_id") @db.Uuid
+  server      Server      @relation(fields: [serverId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  statusId    String      @map("status_id") @db.Uuid
+  movieStatus MovieStatus @relation(fields: [statusId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  reactions   Reaction[]
+  tags        MovieTags[]
+
+  @@map("movies")
+}
+
+model MovieTags {
+  movieId String @map("user_id") @db.Uuid
+  movie   Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  tagId   String @map("server_id") @db.Uuid
+  tag     Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([movieId, tagId])
+  @@map("movie_tags")
+}
+
+model MovieStatus {
+  id            String       @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name          String       @unique @map("name") @db.VarChar
+  approvalCount Int          @map("approval_count")
+  serverId      String       @map("server_id") @db.Uuid
+  server        Server       @relation(fields: [serverId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  nextId        String?      @unique @map("next_id") @db.Uuid
+  next          MovieStatus? @relation("StatusProgression", fields: [nextId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  previous      MovieStatus? @relation("StatusProgression")
+  movies        Movie[]
+
+  @@map("movie_statuses")
+}
+
+model Reaction {
+  id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  reaction String @db.VarChar
+  userId   String @map("user_id") @db.Uuid
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  movieId  String @map("movie_id") @db.Uuid
+  movie    Movie  @relation(fields: [movieId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([userId, movieId])
+  @@map("reactions")
+}

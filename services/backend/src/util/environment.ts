@@ -12,6 +12,7 @@ const validateEnv = () => {
       'DISCORD_JWT_SECRET',
       'JWT_SECRET',
       'DISCORD_BOT_JWT_SECRET',
+      'DATABASE_URL',
       // 'APP_HOST',
       // 'DISCORD_HOOK',
     ] as const,

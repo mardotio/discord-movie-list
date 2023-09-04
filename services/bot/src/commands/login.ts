@@ -39,9 +39,11 @@ const handler = async (interaction: CommandInteraction) => {
   const jwt = generateLoginJwt({
     username: targetMember.user.username,
     id: targetMember.user.id,
-    discriminator: targetMember.user.discriminator,
     nickname: targetMember.nickname,
     avatarId: targetMember.user.avatar,
+    serverName: guild.name,
+    serverId: guild.id,
+    serverIconId: guild.icon,
   });
 
   await interaction.reply({

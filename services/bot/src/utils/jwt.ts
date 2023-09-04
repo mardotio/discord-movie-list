@@ -1,13 +1,13 @@
 import jwt from 'jsonwebtoken';
 import { BOT_ENVIRONMENT } from './environment';
-import { DiscordJwtPayload } from '@mardotio/api-types';
+import { DiscordJWTPayload } from '@mardotio/api-types';
 
 const SECONDS_IN_MINUTE = 60;
 const EXPIRATION_IN_SECONDS = SECONDS_IN_MINUTE * 2;
 
-type DiscordJwtCreateRequest = Omit<DiscordJwtPayload, 'exp' | 'iat'>;
+type DiscordJwtCreateRequest = Omit<DiscordJWTPayload, 'exp' | 'iat'>;
 
-const getJwtPayload = (user: DiscordJwtCreateRequest): DiscordJwtPayload => {
+const getJwtPayload = (user: DiscordJwtCreateRequest): DiscordJWTPayload => {
   const iat = Math.floor(Date.now() / 1000);
   return {
     ...user,

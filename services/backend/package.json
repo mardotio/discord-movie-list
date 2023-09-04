@@ -12,10 +12,13 @@
     "build:prod": "NODE_ENV=production webpack --config webpack.config.ts",
     "start:prod": "node build/server.js",
     "lint": "eslint --ext .js --ext .ts src",
-    "format": "./node_modules/prettier/bin-prettier.js --loglevel silent --write ."
+    "format": "./node_modules/prettier/bin-prettier.js --loglevel silent --write .",
+    "generate-client": "prisma generate",
+    "migrate:dev": "prisma migrate dev"
   },
   "dependencies": {
     "@mardotio/generate-environment": "^1.0.1",
+    "@prisma/client": "^4.14.1",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -23,9 +26,8 @@
     "express": "^4.17.1",
     "express-validator": "^6.14.2",
     "helmet": "^4.1.1",
-    "jsonwebtoken": "^8.5.1",
-    "pg": "^8.5.1",
-    "typeorm": "^0.2.31"
+    "jsonwebtoken": "^9.0.0",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -43,6 +45,7 @@
     "eslint-plugin-prettier": "^3.3.1",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
+    "prisma": "^4.14.1",
     "ts-loader": "^9.3.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",

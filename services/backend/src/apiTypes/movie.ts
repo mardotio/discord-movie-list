@@ -1,5 +1,5 @@
-import { ShortUserResponse } from './user';
 import { ReactionResponse } from './reaction';
+import { StatusResponse } from './status';
 
 export interface CreateMovieRequest {
   name: string;
@@ -9,11 +9,11 @@ export interface MovieResponse {
   name: string;
   id: string;
   addedOn: number;
-  user: ShortUserResponse;
-  status: {
+  user: {
+    avatarLink: string | null;
     displayName: string;
-    order: number;
   };
+  status: StatusResponse;
   userReaction: Omit<ReactionResponse, 'user'> | null;
   reactions: ReactionResponse[];
   watchedOn: number | null;
